@@ -1,0 +1,11 @@
+#canvas {
+  background: url("/img/background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
+}
+
+.text-blue {
+  color: #5dc7be;
+}
