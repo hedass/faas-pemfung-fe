@@ -1,10 +1,8 @@
-$(document).ready(() => ScreenShootPage.start());
+$(document).ready(() => savePage.start());
 
-const ScreenShootPage = new (function () {
+const savePage = new (function () {
   this.urlInput = "#url-input";
-  this.widthInput = "#width-input";
-  this.heightInput = "#height-input";
-  this.screenShootButton = "#screenshoot-button";
+  this.exportButton = "#export-button";
   this.downloadButton = "#download-button";
 
   this.start = () => {
@@ -12,43 +10,39 @@ const ScreenShootPage = new (function () {
   };
 
   this.applyHandle = () => {
-    $(this.screenShootButton).on("click", this.screenShootHandle);
+    $(this.exportButton).on("click", this.exportHandle);
     $(this.downloadButton).on("click", this.downloadHandle);
   };
 
-  this.renderResult = (image) => {
-    $(image).attr("id", "screenshoot-image");
-    $(image).addClass("rounded-xl");
-    $(image).addClass("h-96");
+  this.renderResult = (pdf) => {
+    $(pdf).attr("id", "pdf-file");
+    $(pdf).addClass("rounded-xl");
+    $(pdf).addClass("h-96");
     $("#main-panel").empty();
     $("#main-panel").addClass("gap-4");
-    $("#main-panel").append(image);
+    $("#main-panel").append(pdf);
     $("#main-panel").append(this.downloadButtonTemplate);
     this.applyHandle();
   };
 
   this.downloadHandle = () => {
-    var image = $("#screenshoot-image").attr("src");
+    var image = $("#pdf-file").attr("src");
     var link = document.createElement("a");
 
     document.body.appendChild(link); // for Firefox
 
     link.setAttribute("href", image);
-    link.setAttribute("download", "Screenshoot.png");
+    link.setAttribute("download", "file.pdf");
     link.click();
     link.remove();
   };
 
-  this.screenShootHandle = () => {
+  this.exportHandle = () => {
     console.log($(this.urlInput).val());
-    console.log($(this.widthInput).val());
-    console.log($(this.heightInput).val());
     var baseURL = CONSTANT.baseURL;
     var urlTarget = $(this.urlInput).val();
-    var width = $(this.widthInput).val();
-    var height = $(this.heightInput).val();
     $.ajax({
-      url: baseURL + CONSTANT.screenShootPath,
+      url: baseURL + CONSTANT.savePdfPath,
       type: "get",
       xhr: () => {
         // Seems like the only way to get access to the xhr object
@@ -58,21 +52,17 @@ const ScreenShootPage = new (function () {
       },
       data: {
         url: urlTarget,
-        width: width,
-        height: height,
       },
     })
       .done((result) => {
-        // console.log(result);
+        console.log(result);
         var reader = new FileReader();
         reader.readAsDataURL(result);
         reader.onloadend = () => {
           var base64data = reader.result;
-          var image = new Image();
-          image.onload = () => {
-            this.renderResult(image);
-          };
-          image.src = base64data;
+          var pdf = $(`<embed src="" type="application/pdf"></embed>`);
+          pdf.attr("src", base64data);
+          this.renderResult(pdf);
         };
       })
       .fail((error) => {

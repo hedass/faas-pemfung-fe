@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Saver</title>
+    <title>Page PDF</title>
 
     <link
       rel="stylesheet"
@@ -101,51 +101,56 @@
           justify-center
         "
       >
-        <div class="h-32">
-          <div
-            class="
-              text-4xl
-              font-bold
-              text-white text-center
-              w-full
-              filter
-              drop-shadow-xl
-            "
-          >
-            WELCOME TO Save Page
-          </div>
-          <div
-            class="text-md font-semibold text-white text-center w-full pt-10"
-          >
-            Simple tools to fit your needs
-          </div>
-        </div>
         <div
           class="
-            text-4xl text-white
-            h-24
-            flex
-            gap-10
-            items-center
-            mt-20
+            flex flex-col
+            gap-2 gap-10
+            py-20
+            px-32
+            bg-gray-900
+            rounded-2xl
             filter
             drop-shadow-xl
+            items-center
+            w-1/2
           "
         >
-          <div class="flex flex-col items-center gap-2">
-            <i class="fas fa-camera-retro"></i
-            ><span class="text-sm">Screen Shoot</span>
+          <div class="flex flex-col gap-2 w-full">
+            <label for="url-input" class="text-white font-bold"
+              >Url Target</label
+            >
+            <input
+              id="url-input"
+              type="text"
+              name="url-input"
+              placeholder="https://www.google.com"
+              class="px-5 py-2 rounded-md"
+            />
           </div>
-          <div class="flex flex-col items-center gap-2">
-            <i class="fas fa-file-pdf"></i
-            ><span class="text-sm">Save Page</span>
-          </div>
-          <div class="flex flex-col items-center gap-2">
-            <i class="far fa-image"></i><span class="text-sm">Compress</span>
+          <div
+            id="export-button"
+            class="
+              text-white
+              font-bold
+              px-2
+              py-4
+              text-center
+              rounded-md
+              bg-blue-500
+              text-lg
+              w-1/2
+              cursor-pointer
+            "
+          >
+            <i class="fas fa-file-pdf"></i>
+            Export!
           </div>
         </div>
       </div>
     </div>
   </body>
-  <footer></footer>
+  <footer>
+    <script src="./save-page.js"></script>
+    <script src="./constant.js"></script>
+  </footer>
 </html>
