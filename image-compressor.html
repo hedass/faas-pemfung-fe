@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Compress</title>
+    <title>Compress Image</title>
 
     <link
       rel="stylesheet"
@@ -99,53 +99,87 @@
           mx-auto
           items-center
           justify-center
+          gap-4
         "
       >
-        <div class="h-32">
+        <div
+          id="dropzone"
+          class="
+            flex flex-col
+            gap-2 gap-10
+            bg-gray-900
+            rounded-2xl
+            filter
+            drop-shadow-xl
+            items-center
+            w-1/2
+            h-96
+            p-4
+          "
+        >
           <div
+            id="container-image"
             class="
-              text-4xl
-              font-bold
-              text-white text-center
+              flex flex-col
+              items-center
+              justify-center
+              gap-4
+              border
               w-full
-              filter
-              drop-shadow-xl
+              h-full
+              border-8 border-dashed
+              rounded-2xl
+              text-white
+              relative
             "
           >
-            WELCOME TO Image Compressor
-          </div>
-          <div
-            class="text-md font-semibold text-white text-center w-full pt-10"
-          >
-            Simple tools to fit your needs
+            <div class="text-8xl">
+              <i class="far fa-image"></i>
+            </div>
+            <div class="text-md">drag and drop, or</div>
+            <div
+              id="browse-button"
+              class="
+                text-white
+                font-bold
+                py-2
+                text-center
+                rounded-md
+                bg-blue-500
+                text-lg
+                w-1/4
+                cursor-pointer
+              "
+            >
+              <i class="fas fa-folder-open"></i>
+              Browse
+            </div>
+            <input id="input-image" type="file" class="hidden" />
           </div>
         </div>
         <div
+          id="compress-button"
           class="
-            text-4xl text-white
-            h-24
-            flex
-            gap-10
-            items-center
-            mt-20
-            filter
-            drop-shadow-xl
+            text-white
+            font-bold
+            px-2
+            py-4
+            text-center
+            rounded-md
+            bg-blue-500
+            text-lg
+            w-1/6
+            cursor-pointer
           "
         >
-          <div class="flex flex-col items-center gap-2">
-            <i class="fas fa-camera-retro"></i
-            ><span class="text-sm">Screen Shoot</span>
-          </div>
-          <div class="flex flex-col items-center gap-2">
-            <i class="fas fa-file-pdf"></i
-            ><span class="text-sm">Save Page</span>
-          </div>
-          <div class="flex flex-col items-center gap-2">
-            <i class="far fa-image"></i><span class="text-sm">Compress</span>
-          </div>
+          <i class="fas fa-file-archive"></i>
+          Compress!
         </div>
       </div>
     </div>
   </body>
-  <footer></footer>
+  <footer>
+    <script src="./image-compressor.js"></script>
+    <script src="./constant.js"></script>
+  </footer>
 </html>
